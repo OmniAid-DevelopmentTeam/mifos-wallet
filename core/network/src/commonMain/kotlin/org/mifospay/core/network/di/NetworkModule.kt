@@ -33,7 +33,7 @@ val NetworkModule = module {
                     client = httpClient(
                         config = setupDefaultHttpClient(
                             baseUrl = BaseURL.selfServiceUrl,
-                            loggableHosts = listOf("tt.mifos.community"),
+                            loggableHosts = listOf(org.mifospay.core.network.utils.NetworkConfig.API_ENDPOINT),
                         ),
                     ).config {
                         install(KtorInterceptor) {
@@ -55,16 +55,16 @@ val NetworkModule = module {
                             baseUrl = BaseURL.url,
                             basicCredentialsProvider = {
                                 BasicAuthCredentials(
-                                    username = "mifos",
-                                    password = "password",
+                                    username = org.mifospay.core.network.utils.NetworkConfig.BASIC_USERNAME,
+                                    password = org.mifospay.core.network.utils.NetworkConfig.BASIC_PASSWORD,
                                 )
                             },
                             defaultHeaders = mapOf(
-                                "Fineract-Platform-TenantId" to "default",
+                                "Fineract-Platform-TenantId" to org.mifospay.core.network.utils.NetworkConfig.DEFAULT_TENANT,
                                 "Content-Type" to "application/json",
                                 "Accept" to "application/json",
                             ),
-                            loggableHosts = listOf("tt.mifos.community"),
+                            loggableHosts = listOf(org.mifospay.core.network.utils.NetworkConfig.API_ENDPOINT),
                         ),
                     ),
                 )

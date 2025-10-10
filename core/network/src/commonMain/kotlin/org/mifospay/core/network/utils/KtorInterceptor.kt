@@ -25,7 +25,7 @@ class KtorInterceptor(
     companion object Plugin : HttpClientPlugin<Config, KtorInterceptor> {
         private const val HEADER_TENANT = "Fineract-Platform-TenantId"
         private const val HEADER_AUTH = "Authorization"
-        private const val DEFAULT = "default"
+        private val DEFAULT: String = NetworkConfig.DEFAULT_TENANT
 
         override val key: AttributeKey<KtorInterceptor> = AttributeKey("KtorInterceptor")
 
@@ -67,7 +67,7 @@ class KtorInterceptorRe(
     companion object Plugin : HttpClientPlugin<ConfigRe, KtorInterceptorRe> {
         private const val HEADER_TENANT = "Fineract-Platform-TenantId"
         private const val HEADER_AUTH = "Authorization"
-        private const val DEFAULT = "venus"
+        private val DEFAULT: String = NetworkConfig.DEFAULT_TENANT
 
         override val key: AttributeKey<KtorInterceptorRe> = AttributeKey("KtorInterceptorRe")
 
