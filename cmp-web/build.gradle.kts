@@ -31,33 +31,37 @@ kotlin {
     applyDefaultHierarchyTemplate()
 
     sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(compose.runtime)
+                implementation(compose.ui)
+                implementation(compose.foundation)
+                implementation(compose.material3)
+                implementation(compose.components.resources)
+            }
+        }
+
         val jsWasmMain by creating {
-            dependsOn(commonMain.get())
+            dependsOn(commonMain)
             dependencies {
                 implementation(projects.cmpShared)
                 implementation(projects.core.common)
                 implementation(projects.core.data)
                 implementation(projects.core.model)
                 implementation(projects.core.datastore)
-
-                implementation(compose.runtime)
-                implementation(compose.ui)
-                implementation(compose.foundation)
-                implementation(compose.material3)
-                implementation(compose.components.resources)
-
-                implementation(libs.multiplatform.settings)
-                implementation(libs.multiplatform.settings.serialization)
-                implementation(libs.multiplatform.settings.coroutines)
             }
         }
 
-        jsMain.get().dependsOn(jsWasmMain)
-        wasmJsMain.get().dependsOn(jsWasmMain)
+        val jsMain = jsMain.get()
+        jsMain.dependsOn(jsWasmMain)
+
+        val wasmJsMain = wasmJsMain.get()
+        wasmJsMain.dependsOn(jsWasmMain)
     }
 }
 
 compose.resources {
     publicResClass = true
     generateResClass = always
+    packageOfResClass = "mobile_wallet.cmp_web.generated.resources"
 }

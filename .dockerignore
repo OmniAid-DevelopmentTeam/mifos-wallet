@@ -1,0 +1,69 @@
+# Docker ignore file for optimized builds
+# This reduces the build context size and speeds up builds
+
+# Build artifacts
+**/build/
+**/dist/
+**/.gradle/
+**/node_modules/
+**/.kotlin/
+
+# IDE files
+**/.idea/
+**/.vscode/
+**/*.iml
+**/.DS_Store
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+**/*.md
+!README.md
+docs/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+*.yml
+!docker-compose*.yml
+
+# Test files
+**/test/
+**/*Test.kt
+**/*Spec.kt
+
+# Local environment
+.env
+.env.*
+secrets/
+*.log
+
+# Temporary files
+**/*.tmp
+**/*.temp
+**/*.swp
+**/*.swo
+**/tmp/
+**/temp/
+
+# Android specific (not needed for web build)
+**/cmp-android/
+**/app/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Desktop specific (not needed for web build)
+**/cmp-desktop/
+
+# iOS specific (not needed for web build)
+**/iosApp/
+**/*.xcodeproj/
+**/*.xcworkspace/
+
+# Other platforms (keep only what's needed for web)
+**/wasmJsMain/
