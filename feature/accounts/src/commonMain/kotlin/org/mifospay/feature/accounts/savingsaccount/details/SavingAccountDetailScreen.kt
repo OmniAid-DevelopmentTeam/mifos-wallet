@@ -22,7 +22,9 @@ import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -31,6 +33,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.foundation.Image
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SuggestionChip
@@ -45,6 +48,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,7 +70,10 @@ import mobile_wallet.feature.accounts.generated.resources.feature_accounts_detai
 import mobile_wallet.feature.accounts.generated.resources.feature_accounts_detail_total_withdrawals
 import mobile_wallet.feature.accounts.generated.resources.feature_accounts_detail_wallet_balance
 import mobile_wallet.feature.accounts.generated.resources.feature_accounts_error_oops
+import mobile_wallet.feature.accounts.generated.resources.visa_logo
+import mobile_wallet.feature.accounts.generated.resources.feature_accounts_detail_visa_logo
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
 import org.mifospay.core.common.CurrencyFormatter
 import org.mifospay.core.designsystem.component.MifosScaffold
@@ -354,16 +363,12 @@ private fun SavingAccountCard(
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(200.dp)
+            .aspectRatio(1.586f)
             .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        KptTheme.colorScheme.primary,
-                        KptTheme.colorScheme.secondary,
-                    ),
-                ),
+                color = Color.White,
                 shape = KptTheme.shapes.large,
-            ),
+            )
+            .clip(RoundedCornerShape(16.dp)),
     ) {
         Column(
             modifier = Modifier
@@ -382,13 +387,13 @@ private fun SavingAccountCard(
                         text = stringResource(Res.string.feature_accounts_detail_product_name),
                         fontWeight = FontWeight(300),
                         style = KptTheme.typography.bodySmall,
-                        color = KptTheme.colorScheme.surface,
+                        color = Color.Black,
                     )
 
                     Text(
-                        text = account.name,
-                        fontWeight = FontWeight(400),
-                        color = KptTheme.colorScheme.surface,
+                    text = account.name,
+                    fontWeight = FontWeight(400),
+                    color = Color.Black,
                     )
                 }
 
@@ -402,7 +407,7 @@ private fun SavingAccountCard(
                 Text(
                     text = account.number,
                     fontWeight = FontWeight.Bold,
-                    color = KptTheme.colorScheme.surface,
+                    color = Color.Black,
                     style = KptTheme.typography.headlineMedium,
                     letterSpacing = 0.50.sp,
                 )
@@ -419,7 +424,7 @@ private fun SavingAccountCard(
                         text = stringResource(Res.string.feature_accounts_detail_wallet_balance),
                         fontWeight = FontWeight(300),
                         style = KptTheme.typography.bodySmall,
-                        color = KptTheme.colorScheme.surface,
+                        color = Color.Black,
                     )
 
                     val accountBalance = CurrencyFormatter.format(
@@ -430,18 +435,19 @@ private fun SavingAccountCard(
 
                     Text(
                         text = accountBalance,
-                        color = KptTheme.colorScheme.surface,
+                        color = Color.Black,
                         style = KptTheme.typography.headlineLarge,
                     )
                 }
 
-                Icon(
+                Image(
                     modifier = Modifier
-                        .graphicsLayer(rotationZ = 90f)
-                        .padding(KptTheme.spacing.xs),
-                    imageVector = Icons.Filled.KeyboardArrowUp,
-                    contentDescription = stringResource(Res.string.feature_accounts_detail_arrow),
-                    tint = KptTheme.colorScheme.surface,
+                        .padding(KptTheme.spacing.xs)
+                        .height(70.dp)
+                        .width(112.dp),
+                    painter = painterResource(Res.drawable.visa_logo),
+                    contentDescription = stringResource(Res.string.feature_accounts_detail_visa_logo),
+                    contentScale = ContentScale.FillBounds,
                 )
             }
         }

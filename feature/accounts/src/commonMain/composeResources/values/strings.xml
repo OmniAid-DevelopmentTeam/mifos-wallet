@@ -89,6 +89,7 @@
     <string name="feature_accounts_detail_product_name">Product Name</string>
     <string name="feature_accounts_detail_wallet_balance">Wallet Balance</string>
     <string name="feature_accounts_detail_arrow">arrow</string>
+    <string name="feature_accounts_detail_visa_logo">VISA logo</string>
 
     <!-- AddEditSavingAccountScreen -->
     <string name="feature_accounts_add_client_name">Client Name</string>

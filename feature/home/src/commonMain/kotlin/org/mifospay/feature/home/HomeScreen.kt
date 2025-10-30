@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -98,6 +99,8 @@ import mobile_wallet.feature.home.generated.resources.feature_home_wallet_balanc
 import mobile_wallet.feature.home.generated.resources.home_no_transactions_found
 import mobile_wallet.feature.home.generated.resources.home_transaction_history
 import mobile_wallet.feature.home.generated.resources.start_sending_your_money_tax_free
+import mobile_wallet.feature.home.generated.resources.visa_logo
+import mobile_wallet.feature.home.generated.resources.feature_home_visa_logo
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -429,18 +432,13 @@ private fun AccountCard(
     gradientStartColor: Color = KptTheme.colorScheme.primary,
     gradientEndColor: Color = KptTheme.colorScheme.secondary,
 ) {
-    val brush = remember {
-        Brush.linearGradient(
-            colors = listOf(gradientStartColor, gradientEndColor),
-        )
-    }
 
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .height(200.dp)
+            .aspectRatio(1.586f)
             .background(
-                brush = brush,
+                color = Color.White,
                 shape = KptTheme.shapes.large,
             )
             .clip(RoundedCornerShape(16.dp))
@@ -465,13 +463,13 @@ private fun AccountCard(
                         text = stringResource(Res.string.feature_home_account_type),
                         fontWeight = FontWeight(300),
                         style = KptTheme.typography.bodySmall,
-                        color = KptTheme.colorScheme.surface,
+                        color = Color.Black,
                     )
 
                     Text(
                         text = account.name,
                         fontWeight = FontWeight(400),
-                        color = KptTheme.colorScheme.surface,
+                        color = Color.Black,
                     )
                 }
 
@@ -500,7 +498,7 @@ private fun AccountCard(
                 Text(
                     text = account.number,
                     fontWeight = FontWeight.Bold,
-                    color = KptTheme.colorScheme.surface,
+                    color = Color.Black,
                     style = KptTheme.typography.headlineMedium,
                     letterSpacing = 0.50.sp,
                 )
@@ -517,7 +515,7 @@ private fun AccountCard(
                         text = stringResource(Res.string.feature_home_wallet_balance),
                         fontWeight = FontWeight(300),
                         style = KptTheme.typography.bodySmall,
-                        color = KptTheme.colorScheme.surface,
+                        color = Color.Black,
                     )
 
                     val accountBalance = CurrencyFormatter.format(
@@ -528,18 +526,20 @@ private fun AccountCard(
 
                     Text(
                         text = accountBalance,
-                        color = KptTheme.colorScheme.surface,
+                        color = KptTheme.colorScheme.onSurface,
                         style = KptTheme.typography.headlineLarge,
                     )
                 }
 
-                Icon(
+                val visaPainter = painterResource(Res.drawable.visa_logo)
+                Image(
                     modifier = Modifier
-                        .graphicsLayer(rotationZ = 90f)
-                        .padding(KptTheme.spacing.xs),
-                    imageVector = Icons.Filled.KeyboardArrowUp,
-                    contentDescription = stringResource(Res.string.feature_home_arrow_up),
-                    tint = KptTheme.colorScheme.surface,
+                        .padding(KptTheme.spacing.xs)
+                        .height(70.dp)
+                        .width(112.dp),
+                    painter = visaPainter,
+                    contentDescription = stringResource(Res.string.feature_home_visa_logo),
+                    contentScale = ContentScale.FillBounds,
                 )
             }
         }
