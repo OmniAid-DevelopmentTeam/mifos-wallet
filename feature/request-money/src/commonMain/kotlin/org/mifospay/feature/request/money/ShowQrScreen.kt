@@ -208,7 +208,7 @@ private fun QrDataContent(
             ),
         ) {
             Text(
-                text = "Mifos Pay",
+                text = "OmniAid Pay",
                 style = KptTheme.typography.titleLarge,
                 color = KptTheme.colorScheme.primary,
             )
