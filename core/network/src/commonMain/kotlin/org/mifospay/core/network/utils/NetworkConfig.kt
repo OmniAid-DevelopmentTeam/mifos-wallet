@@ -14,7 +14,7 @@ object NetworkConfig {
     const val API_PATH: String = "/cbs/api/v1/"
     const val API_ENDPOINT_SELF: String = "boffice.demo.omniaid.dev"
     const val API_PATH_SELF: String = "/cbs/api/v1/self/"
-    const val DEFAULT_TENANT: String = ""
+    const val DEFAULT_TENANT: String = "uae"
     const val BASIC_USERNAME: String = "mifos"
-    const val BASIC_PASSWORD: String = ""
+    const val BASIC_PASSWORD: String = "Ns6nLReTU)RT$}."
 }

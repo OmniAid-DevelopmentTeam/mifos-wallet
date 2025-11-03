@@ -13,7 +13,7 @@ fun main() {
     }
 
     CanvasBasedWindow(
-        title = "MifosWallet",
+        title = "OMNIAID Wallet",
         canvasElementId = "ComposeTarget",
     ) {
         MifosPaySharedApp()
